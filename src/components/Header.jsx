@@ -10,7 +10,11 @@ const Header = ({inputValorIncial,setinputValorIncial,inputValorFinal,setinputVa
     .filter((movement) => movement.type === "Ingreso")
     .reduce((total, movement) => total + parseFloat(movement.cantidad), 0);
 
-    setinputValorFinal(inputValorIncial+(sumaIngresos-sumaGastos));
+    console.log((sumaIngresos-sumaGastos))
+    setinputValorFinal(
+      (isNaN(parseFloat(inputValorIncial)) ? 0 : parseFloat(inputValorIncial)) +
+      parseFloat(sumaIngresos) - parseFloat(sumaGastos)
+    );
     setcount(movements.length);
   }, [movements,inputValorIncial]);
   return (
