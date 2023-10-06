@@ -1,0 +1,47 @@
+/* style.module.css */
+/* ... Otros estilos ... */
+
+.chart {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Ancho del 80% */
+    margin: 0 auto; /* Margen automático izquierdo y derecho para centrar */
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .header h3 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .containerSaldo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .containerSaldo label {
+    font-size: 18px;
+    margin-right: 10px; /* Espacio entre los elementos */
+  }
+  
+  .containerSaldo input[type="text"],.containerSaldo input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    flex: 1; /* Para que los inputs ocupen todo el espacio disponible */
+  }
+  
+  .containerSaldo input[type="text"][readonly] {
+    background-color: #eee;
+    color: #555;
+    cursor: not-allowed;
+  }
+  

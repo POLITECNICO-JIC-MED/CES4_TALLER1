@@ -1,0 +1,49 @@
+/* style.module.css */
+/* ... Otros estilos ... */
+
+.list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  .list button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #007bff;
+    margin-right: 10px;
+  }
+  
+  .list button:hover {
+    color: #0056b3;
+    transition: color 0.3s;
+  }
+  
+  .listItem {
+    flex: 1;
+    font-size: 18px;
+    margin-left: 10px;
+  }
+  
+  .ingreso {
+    background-color: #28a745; /* Fondo verde para ingresos */
+    color: white; /* Texto blanco en fondos verdes */
+    padding: 5px 10px; /* Espaciado interno para mejor aspecto */
+    border-radius: 4px; /* Borde redondeado */
+  }
+  
+  .gasto {
+    background-color: #dc3545; /* Fondo rojo para gastos */
+    color: white; /* Texto blanco en fondos rojos */
+    padding: 5px 10px; /* Espaciado interno para mejor aspecto */
+    border-radius: 4px; /* Borde redondeado */
+  }
+  

@@ -1,0 +1,72 @@
+/* style.module.css */
+.containerForm {
+    width:100%;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .headerForm {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .taskform {
+    background-color: white;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .taskLine {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .labelname {
+    flex: 1;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .taskInput {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    transition: background-color 0.3s;
+  }
+  
+  .cancelButton {
+    background-color: #dc3545;
+  }
+  
+  .cancelButton:hover {
+    background-color: #c82333;
+  }
+
+  .buttonContainer {
+    display: flex;
+    gap: 10px; /* Espacio entre los botones */
+  }
+  
