@@ -7,11 +7,11 @@ import CustomModal from "./components/CustomModal";
 
 function App() {
   const [count, setcount] = useState(0);
-  const [inputValorIncial, setinputValorIncial] = useState(0);
+  const [inputValorIncial, setinputValorIncial] = useState("0");
   const [inputValorFinal, setinputValorFinal] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
   const [InputNombre, setInputNombre] = useState("");
-  const [InputCantidad, setInputCantidad] = useState(0);
+  const [InputCantidad, setInputCantidad] = useState("0");
   const [movements,setmovements]=useState([]);
   const [edit, setEdit] = useState(null);
   const [showModal, setShowModal] = useState(false);

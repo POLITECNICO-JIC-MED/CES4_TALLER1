@@ -13,15 +13,32 @@ const Form = ({inputValorIncial,inputValorFinal,setinputValorFinal,selectedOptio
             messages.push("El campo de nombre no puede estar vacío.");
         }
 
-        if (isNaN(InputCantidad) || InputCantidad <= 0) {
+        if (isNaN(InputCantidad.replace(/[^0-9.]/g, "")) || InputCantidad.replace(/[^0-9.]/g, "") <= 0) {
             messages.push("La cantidad debe ser un número válido y mayor que cero.");
         }
 
         if (selectedOption === "Gasto") {
-            const cantidad = parseFloat(InputCantidad);       
-            
+            debugger
+            const cantidad = parseFloat(InputCantidad.replace(/[^0-9.]/g, "")); 
+            var saldoFinal=0;
+            if(edit){
+                const sumaGastos = movements
+                .filter((movement) => movement.type === "Gasto" && movement.id !==edit.id)
+                .reduce((total, movement) => total + parseFloat(movement.cantidad), 0);
+    
+                const sumaIngresos = movements
+                .filter((movement) => movement.type === "Ingreso" && movement.id !==edit.id)
+                .reduce((total, movement) => total + parseFloat(movement.cantidad), 0);
+    
+                const numericInicial = (parseFloat(inputValorIncial.replace(/[^0-9.]/g, "")));    
+    
+                saldoFinal = (isNaN(numericInicial) ? 0 : numericInicial) + parseFloat(sumaIngresos) - parseFloat(sumaGastos);
+    
+            }else{
+                saldoFinal=inputValorFinal.replace(/[^0-9.]/g, "");
+            }                            
         
-            if (cantidad > inputValorFinal) {
+            if (cantidad > saldoFinal) {
                 settitleModal("Error");
                 messages.push("No tienes suficiente saldo para realizar este gasto.");
             }
@@ -40,7 +57,7 @@ const Form = ({inputValorIncial,inputValorFinal,setinputValorFinal,selectedOptio
         id: uuid4(),
         type:selectedOption,
         name: InputNombre,
-        cantidad: InputCantidad,
+        cantidad: InputCantidad.replace(/[^0-9.]/g, ""),
         };
     
         setmovements([...movements, newMovement]);
@@ -54,7 +71,7 @@ const Form = ({inputValorIncial,inputValorFinal,setinputValorFinal,selectedOptio
               
         setSelectedOption("")
         setInputNombre("");
-        setInputCantidad("");
+        setInputCantidad("0");
 
         
         
@@ -63,7 +80,7 @@ const Form = ({inputValorIncial,inputValorFinal,setinputValorFinal,selectedOptio
     
     const editMovement = (movement) =>{
         const newMovement=movements.map((item)=>
-        item.id==movement.id ? {...movement,type:selectedOption,name:InputNombre,cantidad:InputCantidad}:item
+        item.id==movement.id ? {...movement,type:selectedOption,name:InputNombre,cantidad:InputCantidad.replace(/[^0-9.]/g, "")}:item
         );
         setmovements(newMovement);
         setEdit(null)
@@ -76,16 +93,31 @@ const Form = ({inputValorIncial,inputValorFinal,setinputValorFinal,selectedOptio
         } 
         else{ 
             setInputNombre("");
-            setInputCantidad("");
+            setInputCantidad("0");
         }  
           
       }, [edit]);
 
     const handleCancel = () => {
     setInputNombre("");
-    setInputCantidad("");
+    setInputCantidad("0");
     setEdit(null);
     };
+    const formatCurrency = (value) => {
+        debugger
+        return value.toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD", // Cambia a la moneda que desees
+          minimumFractionDigits: 0,
+        });
+      };
+    const handleInputCantidadChange = (e) => {
+        debugger
+        const inputValue = e.target.value;
+        const numericValue = parseFloat(inputValue.replace(/[^0-9.]/g, ""));
+        const formattedValue = formatCurrency(isNaN(numericValue) ? 0 : numericValue);
+        setInputCantidad(formattedValue);
+      };
     
 
     return (
@@ -116,12 +148,12 @@ const Form = ({inputValorIncial,inputValorFinal,setinputValorFinal,selectedOptio
                     <div className={style.taskLine}>
                         <label  className={style.labelname}>Cantidad: </label>
                         <input
-                        type="number"
+                        type="text"
                         name="cantidad"
                         placeholder=""
                         className={style.taskInput}
-                        value={InputCantidad}
-                        onChange={(e) => setInputCantidad(e.target.value)}
+                        value={formatCurrency(parseFloat(InputCantidad.replace(/[^0-9.]/g, "")))}
+                        onChange={handleInputCantidadChange}
                         />
                     </div>
                     
